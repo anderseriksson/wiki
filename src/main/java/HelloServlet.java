@@ -31,15 +31,22 @@ public class HelloServlet extends HttpServlet {
 
             Map<String, Map<String, String>> data = ReadCSV.getDataFromCSV("root.csv");
             for (String header  : data.get("header").keySet()) {
-                response.getWriter().println("<th>" + header + "</th>");
+                response.getWriter().print("<th>" + header + "</th>");
             }
             response.getWriter().println("</tr>");
-            response.getWriter().println("<tr>");
 
-            Map<String, String> row0 = data.get("row 0");
-            for (String item  : row0.keySet()) {
-                response.getWriter().println("<td>" + row0.get(item) + "</td>");
+            int i = 0;
+
+            Map<String, String> row = data.get("row " + i++);
+            while (row != null) {
+                response.getWriter().println("<tr>");
+                for (String item  : row.keySet()) {
+                    response.getWriter().print("<td>" + row.get(item) + "</td>");
+                }
+                response.getWriter().println("</tr>");
+                row = data.get("row " + i++);
             }
+
 
         } catch (Exception e) {
             e.printStackTrace();
