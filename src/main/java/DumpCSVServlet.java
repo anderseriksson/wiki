@@ -8,22 +8,14 @@ import java.util.Map;
 /**
  * Created by Anders Eriksson.
  */
-public class HelloServlet extends HttpServlet {
+public class DumpCSVServlet extends HttpServlet {
 
-    private String greeting = "Hello World";
-
-    public HelloServlet() {
-        //s
-    };
-
-    public HelloServlet(String greeting) {
-        this.greeting = greeting;
+    public DumpCSVServlet() {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().println("<h1>" + greeting + "</h1>");
         response.getWriter().println("session=" + request.getSession(true).getId());
 
         try {
